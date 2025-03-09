@@ -1,163 +1,323 @@
-/* App.css - Global Styles */
+/* App.css - Modern DEX Styling */
+
+/* Base styles and CSS reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body, html {
   margin: 0;
   padding: 0;
-  font-family: 'Inter', sans-serif; /* Updated font for modern readability */
-  background-color: #f8f9fa; /* Lighter, more neutral background */
-  color: #212529; /* Slightly darker text for contrast */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #f7f9fc;
+  color: #1a202c;
+  line-height: 1.6;
 }
 
-nav {
-  background-color: #282c34; /* Keeps the original color */
-  padding: 1em;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added shadow for better visual distinction */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex; /* Flexbox for easier alignment */
-  justify-content: space-around; /* Even spacing between nav items */
+/* Modern navigation styling */
+.main-nav {
+  background-color: #1a1d21;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
-nav ul li {
-  margin: 0; /* Reset margin since flexbox handles spacing */
+.brand {
+  display: flex;
+  align-items: center;
 }
 
-nav a {
-  color: white;
+.brand-name {
+  color: #00d8ff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.navbar-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.navbar-list a {
+  color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
-  font-size: 16px;
-  font-weight: 500; /* Slightly bolder font for better readability */
-  padding: 5px 10px; /* Added padding for clickable area */
-  transition: color 0.3s ease, background-color 0.3s ease; /* Smooth hover effect */
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 }
 
-nav a:hover {
-  color: #61dafb; /* React blue for hover highlight */
-  background-color: rgba(255, 255, 255, 0.1); /* Subtle background change on hover */
-  border-radius: 4px; /* Rounded hover effect */
+.navbar-list a:hover {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
-/* Content styling */
-.content {
-  padding: 20px;
-  margin: 20px auto; /* Centered content */
-  max-width: 1200px; /* Constrain width for better readability */
+.navbar-list a.active {
+  color: #00d8ff;
+  background-color: rgba(0, 216, 255, 0.1);
 }
 
-h1 {
-  color: #333;
-  font-size: 2rem; /* Increased size for better emphasis */
-  font-weight: 700; /* Bold for main headings */
+.wallet-wrapper {
+  margin-left: 1rem;
 }
 
-/* Button styling */
-button {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 10px 20px;
+/* Main content area */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Loading indicator */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}
+
+.loader {
+  border: 4px solid rgba(0, 216, 255, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid #00d8ff;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Home page styling */
+.home-container {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 2.5rem;
   text-align: center;
+}
+
+.hero-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #1a202c;
+  font-weight: 800;
+}
+
+.tagline {
+  font-size: 1.25rem;
+  color: #718096;
+  margin-bottom: 3rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.feature-card {
+  padding: 1.5rem;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.feature-card p {
+  color: #718096;
+  font-size: 0.95rem;
+}
+
+.cta-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.cta-button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
   text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  transition: background-color 0.3s ease; /* Smooth hover transition */
-  border-radius: 4px; /* Match other button styles */
+  transition: all 0.2s ease;
 }
 
-button:hover {
-  background-color: #388E3C; /* Darker green for hover */
+.cta-button.primary {
+  background-color: #00d8ff;
+  color: #1a202c;
 }
 
-input[type="number"], input[type="text"] {
-  padding: 8px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth focus effect */
+.cta-button.primary:hover {
+  background-color: #00c4e8;
+  box-shadow: 0 4px 12px rgba(0, 216, 255, 0.3);
 }
 
-input[type="number"]:focus, input[type="text"]:focus {
-  border-color: #4CAF50;
-  box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+.cta-button.secondary {
+  background-color: rgba(0, 216, 255, 0.1);
+  color: #00d8ff;
+}
+
+.cta-button.secondary:hover {
+  background-color: rgba(0, 216, 255, 0.2);
+}
+
+/* Form elements for DEX components */
+.form-container {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .form-control {
-  width: 100%; /* Full width */
-  padding: 12px; /* Some padding */
-  border: 1px solid #ccc; /* Gray border */
-  border-radius: 4px; /* Rounded borders */
-  box-sizing: border-box; /* Make sure that padding and width stays in place */
-  margin-top: 6px; /* Add a top margin */
-  margin-bottom: 16px; /* Bottom margin */
-  resize: vertical; /* Allow the user to vertically resize the text area (not horizontally) */
-  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth focus effect */
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  margin-bottom: 1.25rem;
+}
+
+.form-control:focus {
+  border-color: #00d8ff;
+  box-shadow: 0 0 0 3px rgba(0, 216, 255, 0.2);
+  outline: none;
 }
 
 .form-label {
-  margin-bottom: 8px;
   display: block;
-  color: #333;
-  font-weight: 600; /* Slightly bolder text for labels */
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #4a5568;
 }
 
 .form-button {
-  background-color: #04AA6D;
-  color: white;
-  padding: 12px 20px;
+  background-color: #00d8ff;
+  color: #1a202c;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
   cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease; /* Smooth hover effect */
+  transition: all 0.2s ease;
 }
 
 .form-button:hover {
-  background-color: #028858; /* Slightly darker green on hover */
+  background-color: #00c4e8;
+  box-shadow: 0 4px 12px rgba(0, 216, 255, 0.3);
 }
 
+/* Wallet button styling */
 .wallet-button {
-  background-color: #4CAF50; /* Green for visibility and action */
-  color: white;
-  padding: 10px 20px;
+  background-color: #00d8ff;
+  color: #1a202c;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
+  padding: 0.6rem 1.25rem;
+  font-weight: 600;
   cursor: pointer;
-  font-size: 16px;
-  margin-top: 10px;
-  transition: background-color 0.3s ease; /* Smooth hover effect */
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .wallet-button:hover {
-  background-color: #388E3C; /* Darker green on hover */
+  background-color: #00c4e8;
+  box-shadow: 0 4px 12px rgba(0, 216, 255, 0.3);
 }
 
-/* Layout for form container */
-.form-container {
-  background-color: #f8f9fa; /* Slightly lighter background for a cleaner look */
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Stronger shadow for better depth */
+.wallet-button.connected {
+  background-color: #10b981;
 }
 
-.home-container {
-  padding: 20px;
-  background-color: #ffffff; /* Pure white for contrast */
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+.wallet-button.connected:hover {
+  background-color: #059669;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Footer */
+.app-footer {
+  background-color: #1a1d21;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 1.5rem;
   text-align: center;
+  font-size: 0.875rem;
 }
 
-/* General padding and margin for layout consistency */
-.content {
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 800px; /* Constrain content width for readability */
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .nav-content {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  
+  .navbar-list {
+    margin: 1rem 0;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .wallet-wrapper {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cta-container {
+    flex-direction: column;
+  }
 }
