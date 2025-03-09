@@ -1,38 +1,163 @@
-.App {
+/* App.css - Global Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif; /* Updated font for modern readability */
+  background-color: #f8f9fa; /* Lighter, more neutral background */
+  color: #212529; /* Slightly darker text for contrast */
+}
+
+nav {
+  background-color: #282c34; /* Keeps the original color */
+  padding: 1em;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added shadow for better visual distinction */
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex; /* Flexbox for easier alignment */
+  justify-content: space-around; /* Even spacing between nav items */
+  align-items: center;
+}
+
+nav ul li {
+  margin: 0; /* Reset margin since flexbox handles spacing */
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500; /* Slightly bolder font for better readability */
+  padding: 5px 10px; /* Added padding for clickable area */
+  transition: color 0.3s ease, background-color 0.3s ease; /* Smooth hover effect */
+}
+
+nav a:hover {
+  color: #61dafb; /* React blue for hover highlight */
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle background change on hover */
+  border-radius: 4px; /* Rounded hover effect */
+}
+
+/* Content styling */
+.content {
+  padding: 20px;
+  margin: 20px auto; /* Centered content */
+  max-width: 1200px; /* Constrain width for better readability */
+}
+
+h1 {
+  color: #333;
+  font-size: 2rem; /* Increased size for better emphasis */
+  font-weight: 700; /* Bold for main headings */
+}
+
+/* Button styling */
+button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+  border-radius: 4px; /* Match other button styles */
+}
+
+button:hover {
+  background-color: #388E3C; /* Darker green for hover */
+}
+
+input[type="number"], input[type="text"] {
+  padding: 8px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth focus effect */
+}
+
+input[type="number"]:focus, input[type="text"]:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+}
+
+.form-control {
+  width: 100%; /* Full width */
+  padding: 12px; /* Some padding */
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin */
+  resize: vertical; /* Allow the user to vertically resize the text area (not horizontally) */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth focus effect */
+}
+
+.form-label {
+  margin-bottom: 8px;
+  display: block;
+  color: #333;
+  font-weight: 600; /* Slightly bolder text for labels */
+}
+
+.form-button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.form-button:hover {
+  background-color: #028858; /* Slightly darker green on hover */
+}
+
+.wallet-button {
+  background-color: #4CAF50; /* Green for visibility and action */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.wallet-button:hover {
+  background-color: #388E3C; /* Darker green on hover */
+}
+
+/* Layout for form container */
+.form-container {
+  background-color: #f8f9fa; /* Slightly lighter background for a cleaner look */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Stronger shadow for better depth */
+}
+
+.home-container {
+  padding: 20px;
+  background-color: #ffffff; /* Pure white for contrast */
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* General padding and margin for layout consistency */
+.content {
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 800px; /* Constrain content width for readability */
 }
