@@ -7,13 +7,15 @@ const WalletButton = () => {
   const [accountBalance, setAccountBalance] = useState('');
   const [chainId, setChainId] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   
+  // Enhanced network list with colors and icons
   const networks = {
-    1: 'Ethereum',
-    56: 'BSC',
-    137: 'Polygon',
-    42161: 'Arbitrum',
-    10: 'Optimism'
+    1: { name: 'Ethereum', icon: '🔷' },
+    56: { name: 'BSC', icon: '🟡' },
+    137: { name: 'Polygon', icon: '🟣' },
+    42161: { name: 'Arbitrum', icon: '🔵' },
+    10: { name: 'Optimism', icon: '🔴' }
   };
 
   // Check if wallet is already connected on component mount
@@ -80,6 +82,7 @@ const WalletButton = () => {
 
   const connectWallet = async () => {
     if (window.ethereum) {
+      setIsLoading(true);
       try {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const accounts = await provider.send("eth_requestAccounts", []);
@@ -92,6 +95,8 @@ const WalletButton = () => {
         setAccountAddress(address);
         setChainId(network.chainId);
         setAccountBalance(ethers.utils.formatEther(balance).substring(0, 7));
+        
+        showToast('Wallet connected successfully', 'success');
       } catch (error) {
         console.error("Failed to connect wallet:", error);
         
@@ -102,6 +107,8 @@ const WalletButton = () => {
         } else {
           showToast(`Failed to connect: ${error.message}`, 'error');
         }
+      } finally {
+        setIsLoading(false);
       }
     } else {
       showToast('Please install MetaMask to use this app', 'error');
@@ -150,10 +157,32 @@ const WalletButton = () => {
     }
   };
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownOpen && !event.target.closest('.wallet-connected-container')) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [dropdownOpen]);
+
   if (!isConnected) {
     return (
-      <button onClick={connectWallet} className="wallet-button">
-        <span>Connect Wallet</span>
+      <button 
+        onClick={connectWallet} 
+        className="wallet-button"
+        disabled={isLoading}
+      >
+        {isLoading ? (
+          <span>Connecting...</span>
+        ) : (
+          <span>Connect Wallet</span>
+        )}
       </button>
     );
   }
@@ -169,7 +198,9 @@ const WalletButton = () => {
           <div className="wallet-address">{getShortAddress(accountAddress)}</div>
         </div>
         <div className="network-badge">
-          {networks[chainId] || `Chain ID: ${chainId}`}
+          {networks[chainId] 
+            ? networks[chainId].name 
+            : `Chain ID: ${chainId}`}
         </div>
       </button>
       
@@ -188,21 +219,23 @@ const WalletButton = () => {
           <div className="dropdown-networks">
             <div className="dropdown-section-title">Networks</div>
             <div className="network-options">
-              {Object.entries(networks).map(([id, name]) => (
+              {Object.entries(networks).map(([id, network]) => (
                 <div 
                   key={id}
                   className={`network-option ${Number(chainId) === Number(id) ? 'active' : ''}`}
                   onClick={() => switchNetwork(id)}
                 >
-                  {name}
+                  <span>{network.icon} {network.name}</span>
                   {Number(chainId) === Number(id) && <span className="check-icon">✓</span>}
                 </div>
               ))}
             </div>
           </div>
-          <button className="disconnect-button" onClick={disconnectWallet}>
-            Disconnect
-          </button>
+          <div style={{ padding: '0 1rem' }}>
+            <button className="disconnect-button" onClick={disconnectWallet}>
+              Disconnect
+            </button>
+          </div>
         </div>
       )}
     </div>
